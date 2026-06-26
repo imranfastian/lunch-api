@@ -1,0 +1,235 @@
+basePath: /
+definitions:
+  config.MenuItem:
+    properties:
+      dish:
+        type: string
+      type:
+        type: string
+    type: object
+  config.Restaurant:
+    properties:
+      address:
+        type: string
+      city:
+        type: string
+      cuisine:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      rating:
+        type: number
+      weekly_menu:
+        $ref: '#/definitions/config.WeeklyMenu'
+    type: object
+  config.WeeklyMenu:
+    additionalProperties:
+      items:
+        $ref: '#/definitions/config.MenuItem'
+      type: array
+    type: object
+  handlers.RestaurantNearby:
+    properties:
+      address:
+        type: string
+      city:
+        type: string
+      cuisine:
+        type: string
+      distance_km:
+        type: number
+      id:
+        type: integer
+      name:
+        type: string
+      rating:
+        type: number
+      weekly_menu:
+        $ref: '#/definitions/config.WeeklyMenu'
+    type: object
+  handlers.RestaurantToday:
+    properties:
+      address:
+        type: string
+      city:
+        type: string
+      cuisine:
+        type: string
+      day:
+        type: string
+      id:
+        type: integer
+      menu:
+        items:
+          $ref: '#/definitions/config.MenuItem'
+        type: array
+      name:
+        type: string
+      rating:
+        type: number
+    type: object
+host: localhost:8000
+info:
+  contact: {}
+  description: REST API for SciLifeLab employees to explore lunch options at nearby
+    restaurants.
+  title: SciLifeLab Lunch API
+  version: 0.2.0
+paths:
+  /api/restaurants:
+    get:
+      description: Returns all restaurants. Filter by city with ?city=stockholm or
+        ?city=uppsala.
+      parameters:
+      - description: Filter by city (stockholm or uppsala)
+        in: query
+        name: city
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/config.Restaurant'
+            type: array
+      summary: List restaurants
+  /api/restaurants/{id}:
+    get:
+      parameters:
+      - description: Restaurant ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.Restaurant'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get a restaurant by ID
+  /api/restaurants/{id}/menu:
+    get:
+      parameters:
+      - description: Restaurant ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.WeeklyMenu'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get full weekly menu for a restaurant
+  /api/restaurants/{id}/menu/today:
+    get:
+      description: Returns only the current weekday's menu items for the specified
+        restaurant.
+      parameters:
+      - description: Restaurant ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.RestaurantToday'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get today's menu for a restaurant
+  /api/restaurants/nearby:
+    get:
+      description: Returns restaurants within the given radius (km) of the SciLifeLab
+        office in the specified city, sorted by distance. Default radius is 5 km.
+      parameters:
+      - description: 'City: stockholm or uppsala'
+        in: query
+        name: city
+        required: true
+        type: string
+      - description: Search radius in kilometres (default 5)
+        in: query
+        name: radius
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handlers.RestaurantNearby'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List restaurants near the SciLifeLab office
+  /api/restaurants/today:
+    get:
+      description: Returns all restaurants showing only the current weekday's menu
+        items. Filter by city with ?city=.
+      parameters:
+      - description: Filter by city (stockholm or uppsala)
+        in: query
+        name: city
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handlers.RestaurantToday'
+            type: array
+      summary: List restaurants with today's menu
+swagger: "2.0"

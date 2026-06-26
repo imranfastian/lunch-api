@@ -1,0 +1,63 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Dev runs in the same namespace as base; change to lunch-api-dev for isolation
+namespace: lunch-api
+
+resources:
+  - ../../base
+
+# Override the image tag to the dev build
+images:
+  - name: lunch-api
+    newTag: dev
+
+# Patch: 1 replica is enough for local development
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+    target:
+      kind: Deployment
+      name: lunch-api
+
+  # Lower resource limits for the local kind cluster
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: "50m"
+            memory: "32Mi"
+          limits:
+            cpu: "200m"
+            memory: "64Mi"
+    target:
+      kind: Deployment
+      name: lunch-api
+
+  # HPA: keep it at 1 replica in dev
+  - patch: |-
+      - op: replace
+        path: /spec/minReplicas
+        value: 1
+      - op: replace
+        path: /spec/maxReplicas
+        value: 2
+    target:
+      kind: HorizontalPodAutoscaler
+      name: lunch-api
+
+  # Switch Gin to debug mode in dev (base sets release).
+  # Strategic merge patch: merges data keys so PORT is preserved.
+  - patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: lunch-api-config
+      data:
+        GIN_MODE: debug
+    target:
+      kind: ConfigMap
+      name: lunch-api-config

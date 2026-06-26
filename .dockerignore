@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+
+# Local dev artifacts
+*.exe
+bin/
+tmp/
+
+# docs/docs.go is compiled into the binary (Swagger spec via init()) — must be included.
+# Only exclude the static spec files used by tooling outside the container.
+docs/*.json
+docs/*.yaml
+README.md
+
+# Test files
+tests/
+
+# Kubernetes / Helm manifests
+k8s/
+
+# IDE / OS
+.vscode/
+.idea/
+*.DS_Store
+
+# Secrets / env files — never in the image
+.env
+*.pem
+*.key

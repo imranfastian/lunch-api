@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lunch-api
+  namespace: lunch-api
+  labels:
+    app.kubernetes.io/name: lunch-api
+    app.kubernetes.io/part-of: lunch-api
+  annotations:
+    # Route all paths to the backend without stripping the prefix
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    # Limit request body size (the API is read-only, so 1 MB is generous)
+    nginx.ingress.kubernetes.io/proxy-body-size: "1m"
+    # Enable CORS for browser clients
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, OPTIONS"
+spec:
+  # Requires nginx ingress controller — see docs/deployment.md for setup
+  ingressClassName: nginx
+  rules:
+    - host: lunch-api.local   # Add to /etc/hosts → 127.0.0.1 for local kind
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lunch-api
+                port:
+                  name: http

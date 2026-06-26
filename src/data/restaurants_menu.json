@@ -1,0 +1,2018 @@
+[
+    {
+        "id": 1,
+        "name": "Smak & Bistro",
+        "city": "Stockholm",
+        "address": "Kungsgatan 12, 111 43 Stockholm",
+        "cuisine": "Modern Swedish",
+        "rating": 4.6,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Creamy mushroom risotto with truffle oil and parmesan"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-seared cod fillet with herb mashed potatoes and white wine sauce"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Classic Swedish meatballs with lingonberries, pickled cucumber, and cream sauce"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Apple crumble with vanilla custard"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Baked beetroot with goat cheese, walnuts, and honey dressing"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Salmon pudding with melted butter, green peas, and dill"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Beef Bourguignon served with roasted root vegetables"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Spiced pumpkin soup with toasted seeds"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Spinach and ricotta tortellini in a sage butter sauce"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Crispy fish tacos with avocado crema and pickled red onion"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled pork loin with apple cider glaze and potato gratin"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Chocolate fondant with raspberry sorbet"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Yellow lentil dahl with basmati rice and garlic naan"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Traditional Swedish fish soup with saffron, mussels, and aioli"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Pancakes with lingonberry jam (served with pea soup and pork)"
+                },
+                {
+                    "type": "salad",
+                    "dish": "Fresh garden salad with lemon vinaigrette"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Halloumi burger with sweet potato fries and chili mayo"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Grilled sea bass with asparagus and lemon-herb butter"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Ribeye steak with pepper sauce and roasted potato wedges"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Classic crème brûlée"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Wild mushroom tart with rocket salad and balsamic glaze"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Baked halibut with horseradish, browned butter, and boiled potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Slow-cooked lamb shank with rosemary reduction and potato mash"
+                },
+                {
+                    "type": "chef_special",
+                    "dish": "Artisan cheese platter with fig jam"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Roasted vegetable lasagna with a side caesar salad"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Smoked salmon benedict with hollandaise on brioche"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Traditional Sunday roast beef with Yorkshire pudding and gravy"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Swedish pancakes with fresh berries and whipped cream"
+                }
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "name": "Uppsala Trädgårdscafé",
+        "city": "Uppsala",
+        "address": "Svartbäcksgatan 27, 753 32 Uppsala",
+        "cuisine": "Scandinavian Organic",
+        "rating": 4.4,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Chipppea and sweet potato curry with quinoa"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Steamed cod with dill cream sauce and boiled potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled chicken breast with tarragon sauce and roasted potatoes"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Gazpacho with garlic croutons"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Quinoa bowl with roasted broccoli, avocado, and tahini dressing"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fried herring fillets with mashed potatoes and lingonberries"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Pork schnitzel with caper butter and warm potato salad"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Rhubarb tart with vanilla ice cream"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Mushroom and leek quiche with side green salad"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Baked salmon with a lemon-herb crust and couscous"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Venison meatballs with juniper berry sauce and potato purée"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Creamy tomato basil soup"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Zucchini noodles with avocado pesto and cherry tomatoes"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish cake with remoulade sauce and pickled cucumber"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Yellow pea soup with pork belly followed by pancakes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Blueberry pie with whipped cream"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Tofu stir-fry with ginger, garlic, and jasmine rice"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-fried trout with almond butter and green beans"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Slow-braised beef brisket with red wine reduction and mash"
+                },
+                {
+                    "type": "appetizer",
+                    "dish": "Garlic bread with herb butter"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Eggplant parmigiana with fresh basil and sourdough bread"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Seafood paella with prawns, mussels, and squid"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled lamb chops with garlic mash and mint jus"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Lemon meringue pie"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Avocado and poached egg sourdough toast with feta"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Smoked trout salad with soft boiled eggs and mustard dressing"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Pulled pork burger with coleslaw and french fries"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Warm chocolate brownie with vanilla bean ice cream"
+                }
+            ]
+        }
+    },
+    {
+        "id": 3,
+        "name": "Gamla Stans Valv",
+        "city": "Stockholm",
+        "address": "Västerlånggatan 42, 111 29 Stockholm",
+        "cuisine": "Traditional Swedish",
+        "rating": 4.5,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Potato and leek soup with truffle crostini"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Poached salmon with chive mayonnaise and summer potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Classic Wallenbergare (veal patties) with green peas and melted butter"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Chanterelle mushroom toast with parmesan shavings"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Baked cod with horseradish and browned butter"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Fried pork with onion sauce and boiled potatoes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Swedish cheesecake (Ostkaka) with cloudberry jam"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Lentil stew with root vegetables and sourdough bread"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish and chips with homemade tartar sauce"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Beef Lindström (beef patties with beetroot and capers)"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Cream of mushroom soup"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegetarian pea soup followed by vegan pancakes"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Creamy seafood stew with saffron and garlic aioli"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Traditional pea soup with pork belly and classic pancakes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Pancakes with strawberry jam and cream"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Baked sweet potato filled with black beans and corn salad"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Grilled char fillet with asparagus and lemon butter"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Biff Rydberg (beef cubes with diced potatoes and mustard cream)"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Chocolate truffle"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Pumpkin and sage ravioli in brown butter"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Skagen röra (prawn salad) toast followed by pan-fried perch"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Roast duck breast with orange glaze and potato croquettes"
+                },
+                {
+                    "type": "starter",
+                    "dish": "Cured salmon with mustard dill sauce"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Mushroom risotto with parmigiano reggiano"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish soup with cod, salmon, and shrimp"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Slow-cooked beef chuck roll with root mash and gravy"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Vanilla panna cotta"
+                }
+            ]
+        }
+    },
+    {
+        "id": 4,
+        "name": "Fyris Krog & Bar",
+        "city": "Uppsala",
+        "address": "Östra Ågatan 31, 753 22 Uppsala",
+        "cuisine": "European Fusion",
+        "rating": 4.2,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Caprese salad with buffalo mozzarella, basil, and balsamic reduction"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-fried mackerel with gooseberry compote and boiled potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Chicken Kiev served with herb rice and broccoli"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Stuffed bell peppers with spiced rice and feta cheese"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Salmon lasagna with spinach and parmesan cheese sauce"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Pork chops with mushroom gravy and potato gratin"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Tiramisu"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Falafel wrap with hummus, pickled turnips, and garlic sauce"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Cod loin wrapped in bacon with pea purée"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Swedish meatloaf with lingonberry cream sauce"
+                },
+                {
+                    "type": "salad",
+                    "dish": "Greek salad with olives and feta"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Minestrone soup with parmesan croutons"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Bouillabaisse (French fish soup) with garlic toast"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled flank steak with chimichurri and sweet potato wedges"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Lemon sorbet"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Mushroom and truffle pizza with wild rocket"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Crispy calamari with lemon aioli and green salad"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Beef tenderloin with béarnaise sauce and french fries"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Warm chocolate chip cookie with vanilla ice cream"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Goat cheese crostini with honey and thyme"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-cooked turbot with browned butter and capers"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Roasted rack of lamb with garlic mash and red wine jus"
+                },
+                {
+                    "type": "appetizer",
+                    "dish": "Marinated olives"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegetarian shakshuka with feta and warm pita bread"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish burger with dill mayo and seasoned fries"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Crispy pork belly with apple compote and mashed potatoes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Apple tart"
+                }
+            ]
+        }
+    },
+    {
+        "id": 5,
+        "name": "Södermalm Matstudio",
+        "city": "Stockholm",
+        "address": "Götgatan 48, 118 26 Stockholm",
+        "cuisine": "International Contemporary",
+        "rating": 4.7,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Thai green vegetable curry with tofu and jasmine rice"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Ceviche with seabass, lime, chili, and sweet potato"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Beef teriyaki stir-fry with udon noodles and broccoli"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Sweet corn chowder"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Burrito bowl with black beans, guacamole, and salsa"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Grilled salmon teriyaki with sesame broccoli and brown rice"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Korean fried chicken wings with pickled radish"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Matcha ice cream"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Sweet potato and chickpea patties with avocado dressing"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Tuna tataki with soy-ginger glaze and seaweed salad"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Crispy duck pancakes with hoisin sauce and cucumber"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Miso soup with tofu"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Moroccan vegetable tagine with couscous and mint yogurt"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Poached cod in ginger-soy broth with bok choy"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Moroccan spiced lamb meatballs with flatbread"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Baklava with honey syrup"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Truffe and wild mushroom pasta with truffle oil"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-fried scallops with pea purée and crispy pancetta"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Tomahawk steak for two with compound butter (Single portions available)"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Assorted macarons"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Gorgonzola and walnut gnocchi with spinach"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Grilled lobster tail with garlic herb butter and mixed greens"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Venison steak with blackberry reduction and parsnip mash"
+                },
+                {
+                    "type": "appetizer",
+                    "dish": "Oysters on the half shell"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegan blueberry pancakes with maple syrup"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Smoked salmon bagel with cream cheese and capers"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Eggs benedict with smoked ham on english muffin"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Churros with chocolate dipping sauce"
+                }
+            ]
+        }
+    },
+    {
+        "id": 6,
+        "name": "Botanika Kök",
+        "city": "Uppsala",
+        "address": "Skolgatan 45, 753 11 Uppsala",
+        "cuisine": "Nordic & Green Bistro",
+        "rating": 4.3,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Barley risotto with roasted parsnips and thyme"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Poached char with creamed leeks and dill potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Venison sausages with potato mash and lingonberry relish"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Baked celeriac with brown butter, hazelnuts, and searching herbs"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Baked cod fillet with egg sauce and small early potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Braised beef ribs with root vegetable mash"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Vanilla panna cotta with raspberry compote"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Creamy potato soup with roasted sunflower seeds"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Smoked salmon tartare with mustard sauce and rye bread"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled chicken breast with mushroom cream sauce and roasted potatoes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Oat crumble with lingonberries"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Traditional yellow pea soup (vegetarian option) with vegan pancakes"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish soup with saffron, fennel, and shrimp"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Classic pea soup with pork and pancakes with cloudberry jam"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Pancakes with cream"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Lentil loaf with tomato glaze and roasted root vegetables"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-fried perch fillet with chanterelle sauce and boiled potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Pork tenderloin medallion with green pepper sauce and potato gratin"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Dark chocolate mousse"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Caramelized onion and goat cheese tart"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Grilled pike-perch with white wine sauce and sugar snap peas"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Slow-cooked beef brisket with horseradish cream and mashed potatoes"
+                },
+                {
+                    "type": "starter",
+                    "dish": "Pickled chanterelles on toast"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Fluffy waffles with cloudberries and sour cream"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Cured salmon platter with dill potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Roasted chicken leg with cream sauce and cucumber salad"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Swedish cinnamon bun pudding"
+                }
+            ]
+        }
+    },
+    {
+        "id": 7,
+        "name": "Östermalm Smakbar",
+        "city": "Stockholm",
+        "address": "Nybrogatan 15, 114 39 Stockholm",
+        "cuisine": "Modern French-Swedish",
+        "rating": 4.6,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Ratatouille served with herbed couscous"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Bouillabaisse with fresh mussels, cod, and rouille"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Steak haché with fried egg, capers, and french fries"
+                },
+                {
+                    "type": "soup",
+                    "dish": "French onion soup with gruyère crouton"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Goat cheese salad with roasted walnuts, figs, and honey"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-fried sole Meunière with lemon and parsley butter"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Coq au Vin with pearl onions, mushrooms, and potato purée"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Lemon tart"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Mushroom crêpes with a side salad"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Salmon en papillote with julienne vegetables"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Duck confit with sarladaise potatoes (fried in duck fat)"
+                },
+                {
+                    "type": "starter",
+                    "dish": "Escargots in garlic parsley butter"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Truffle omelette with fresh herbs and arugula"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Skate wing with browned butter, capers, and croutons"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Beef Bourguignon with buttered tagliatelle"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Profiteroles with chocolate sauce"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Twice-baked cheese soufflé with walnut salad"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-seared sea bass with fennel and orange reduction"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Entrecôte with béarnaise sauce and hand-cut fries"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Crème brûlée"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Roast pumpkin with blue cheese and toasted pecans"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Lobster thermidor with a side green salad"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Chateaubriand with roasted marrow bone and red wine glaze"
+                },
+                {
+                    "type": "appetizer",
+                    "dish": "Foie gras terrine with brioche"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Brioche French toast with mixed berry compote"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Nicoise salad with seared fresh tuna and soft-boiled egg"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Croque Monsieur or Madame served with green salad"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Chocolate éclair"
+                }
+            ]
+        }
+    },
+    {
+        "id": 8,
+        "name": "Saluhallen Bistro",
+        "city": "Uppsala",
+        "address": "Sankt Eriks Gränd 2, 753 10 Uppsala",
+        "cuisine": "Market Fresh Nordic",
+        "rating": 4.5,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Leek and potato frittata with mixed greens"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Smoked salmon and chive quiche with potato salad"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Pork loin with creamed cabbage and boiled potatoes"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Creamy mushroom soup"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Barley salad with roasted winter vegetables and feta"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fried cod bites with remoulade sauce and lemon"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Traditional Swedish beef stew with carrots and potatoes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Apple pie with vanilla sauce"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Spinach lasagna with ricotta and garlic bread"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Baked rainbow trout with almond flakes and asparagus"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Chicken skewers with tzatziki and roasted potato wedges"
+                },
+                {
+                    "type": "salad",
+                    "dish": "Beetroot and goat cheese salad"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegetarian split pea soup with herb croutons"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish soup with cod, salmon, shrimp, and aioli toast"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Yellow pea soup with pork belly, followed by classic pancakes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Pancakes with strawberry jam"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Falafel plate with hummus, pita bread, and tabbouleh"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-fried mackerel with dill cream and crushed potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled ribeye steak with chive butter and french fries"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Chocolate mud cake (Kladdkaka)"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Mushroom risotto topped with shaved truffle"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Toast Skagen followed by pan-seared pike-perch fillet"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Slow-braised ox cheeks in red wine sauce with potato purée"
+                },
+                {
+                    "type": "starter",
+                    "dish": "Charcuterie board"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Waffles with fresh berries and vanilla ice cream"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Creamy seafood pasta with mussels and prawns"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Classic burger with cheddar cheese, bacon, and fries"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Warm apple crumble"
+                }
+            ]
+        }
+    },
+    {
+        "id": 9,
+        "name": "Kungsholmen Grill",
+        "city": "Stockholm",
+        "address": "Norr Mälarstrand 64, 112 35 Stockholm",
+        "cuisine": "Steakhouse & Seafood",
+        "rating": 4.4,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Grilled halloumi wrap with roasted peppers and aioli"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish cakes with sweet chili sauce and coriander rice"
+                },
+                {
+                    "type": "meat",
+                    "dish": "BBQ pulled pork sandwich with coleslaw and potato chips"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegetable skewers with peanut dipping sauce and rice"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Baked salmon with dill sauce and boiled potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled chicken breast with caesar salad and garlic bread"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Pineapple sorbet"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Black bean burger with avocado and sweet potato fries"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish and chips with mushy peas and tartar sauce"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Beef chili con carne with sour cream and tortilla chips"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Spicy tomato soup"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Lentil shepherd’s pie with sweet potato mash"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Seafood gumbo with shrimp, white fish, and rice"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Smoked pork ribs with honey BBQ sauce and corn on the cob"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Pecan pie"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Four cheese white pizza with truffle oil and rocket"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Grilled tuna steak with mango-avocado salsa"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Flank steak with chimichurri and roasted potato wedges"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "New York cheesecake"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Portobello mushroom steak with blue cheese sauce"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Whole grilled sea bream with herbs and lemon"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Dry-aged ribeye steak with truffle fries and béarnaise"
+                },
+                {
+                    "type": "appetizer",
+                    "dish": "Spicy chicken wings"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegetarian eggs florentine with spinach and hollandaise"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Smoked salmon bagel with caper cream cheese"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Texas-style beef brisket brunch with scrambled eggs"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Chocolate chip pancakes"
+                }
+            ]
+        }
+    },
+    {
+        "id": 10,
+        "name": "Stationen Uppsala",
+        "city": "Uppsala",
+        "address": "Olof Palmes Plats 1, 753 21 Uppsala",
+        "cuisine": "Continental Brasserie",
+        "rating": 4.5,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Wild mushroom risotto with grated pecorino cheese"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-seared cod with browned butter, shrimp, and horseradish"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Classic Swedish meatballs with cream sauce and lingonberries"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Potato and leek soup"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Baked goat cheese with honey, walnuts, and beetroot salad"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Salmon pudding with melted butter and dill"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Pork schnitzel with green peas, capers, and anchovy butter"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Crème caramel"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Tagliatelle with basil pesto, cherry tomatoes, and pine nuts"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish and chips with tartar sauce and lemon"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Biff Rydberg (sauteed beef cubes, onions, and potatoes) with egg yolk"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Chocolate truffle"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegetarian pea soup followed by pancakes with jam and cream"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Creamy fish and seafood soup with saffron and aioli"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Classic pea soup with pork belly and traditional pancakes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Pancakes with raspberry jam"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Halloumi burger with avocado, chili mayo, and french fries"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Grilled char fillet with chanterelle sauce and boiled potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled entrecôte with béarnaise sauce and potato gratin"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Warm chocolate fondant"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Burrata with heirloom tomatoes, basil oil, and pine nuts"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Halibut fillet with white wine sauce, asparagus, and duchess potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Roasted duck breast with cherry reduction and sweet potato mash"
+                },
+                {
+                    "type": "appetizer",
+                    "dish": "Toast Skagen"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Avocado toast with poached eggs and chili flakes"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Smoked salmon platter with scrambled eggs and chives"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Classic Eggs Benedict with smoked ham and hollandaise sauce"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Belgian waffles with maple syrup and cream"
+                }
+            ]
+        }
+    },
+    {
+        "id": 11,
+        "name": "Vasastan Vin & Bistro",
+        "city": "Stockholm",
+        "address": "Odengatan 56, 113 22 Stockholm",
+        "cuisine": "European Bistro",
+        "rating": 4.3,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Roasted cauliflower steak with tahini dressing and pomegranate"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Steamed cod with egg and parsley sauce and boiled potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Chicken breast stuffed with spinach and ricotta, served with rice"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Pumpkin ravioli in a light sage butter sauce"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Salmon burgers with dill-lime mayo and sweet potato fries"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Pork chops with apple sage glaze and roasted baby potatoes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Vanilla ice cream with warm chocolate sauce"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Chickpea and vegetable tagine with herb couscous"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-fried herring with mashed potatoes and melted butter"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Beef stroganoff served with buttered rice and gherkins"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Tomato and basil soup"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Creamy mushroom and spinach crêpes"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Mediterranean fish stew with tomatoes, olives, and capers"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Roasted turkey breast with cranberry sauce and potato mash"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Lemon posset"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Linguine with wild mushrooms and truffle shavings"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Grilled sea bass with lemon-herb butter and roasted asparagus"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Sirloin steak with green pepper corn sauce and french fries"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Chocolate mousse"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Baked camembert with honey, rosemary, and walnuts"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Baked turbot with fresh horseradish, browned butter, and shrimp"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Slow-braised lamb shanks with red wine reduction and mash"
+                },
+                {
+                    "type": "starter",
+                    "dish": "Beef carpaccio with parmesan and rocket"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegetarian full English breakfast with beans, mushrooms, and eggs"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Kedgeree (flaked smoked fish with curried rice and boiled egg)"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Traditional roast chicken Sunday lunch with all the trimmings"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Sticky toffee pudding"
+                }
+            ]
+        }
+    },
+    {
+        "id": 12,
+        "name": "Villa Anna",
+        "city": "Uppsala",
+        "address": "Archbishop's Place 9, 753 10 Uppsala",
+        "cuisine": "Gourmet Swedish",
+        "rating": 4.8,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Jerusalem artichoke soup with truffle and hazelnut crumble"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Poached char from Lake Siljan with sandefjord sauce and dill potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Organic pork belly with variations of cabbage and apple jus"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Heritage beetroot with goat cheese curds and sourdough crisps"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Lightly salted cod with hand-peeled shrimp, horseradish, and egg"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Venison meatballs with wild lingonberries and potato purée"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Sorbets of seasonal fruits"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Swedish chanterelles on brioche with Västerbottensost cheese"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Baked halibut with local seaweed butter and early root crops"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Roast duck breast with spiced plum compote and parsnip purée"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Consommé of forest mushrooms"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Slow baked onion tart with thyme and aged Swedish cheese"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Artisan fish soup with handpicked mussels and saffron cream"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Braised ox cheek with red wine, smoked bacon, and potato purée"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Fine pancakes with cloudberry compote and vanilla cream"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Truffle risotto with seasonal wild mushrooms"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-fried pike-perch fillet with chanterelle butter and potato mash"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Fillet of Swedish beef with red wine reduction and potato gratin"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Selection of local cheeses"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Confit of celeriac with browned butter emulsion and hazelnuts"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Langoustine tails with herb butter and fennel salad"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Roasted rack of local lamb with garlic rosemary jus"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Warm chocolate cake with cloudberry ripple ice cream"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Mushroom and spinach wellington with vegetable gravy"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Smoked salmon terrine with dill mustard dressing"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Slow roast beef with yorkshire pudding, roasted potatoes, and gravy"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Crème brûlée flavored with meadowsweet"
+                }
+            ]
+        }
+    },
+    {
+        "id": 13,
+        "name": "Djurgården Terrassen",
+        "city": "Stockholm",
+        "address": "Djurgårdsslätten 46, 115 21 Stockholm",
+        "cuisine": "Nordic Comfort",
+        "rating": 4.4,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Warm lentil salad with roasted squash and pumpkin seeds"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fried herring with clarified butter, lingonberries, and mash"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Swedish meatloaf with cream sauce and pressgurka (pickled cucumber)"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Creamy vegetable broth"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegetarian lasagna with spinach and sunflower seed pesto"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Baked cod fillet with chive butter and crushed potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled chicken skewers with cold herb sauce and roasted potatoes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Vanilla ice cream with berry compote"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Feta and spinach pie with tomato and onion salad"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish cakes with remoulade sauce and green peas"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Beef patties with onion gravy and boiled potatoes"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Cinnamon bun pudding"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Yellow pea soup (vegan recipe) with pancakes and jam"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Salmon and spinach quiche with green salad"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Traditional pea soup with pork, pancakes with strawberry jam and whipped cream"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Pancakes with cream"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Halloumi fries with avocado dip and a large garden salad"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Crispy fried fish fillet with tartar sauce and lemon"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Pork tenderloin with pepper sauce and fried potato wedges"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Chocolate brownie"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Mushroom and blue cheese tart with rocket salad"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Cured salmon platter with dill stewed potatoes (Dillstuvad potatis)"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled flank steak with béarnaise sauce and french fries"
+                },
+                {
+                    "type": "starter",
+                    "dish": "Shrimp sandwich (Räksmörgås) half portion"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Waffles with whipped cream and selection of jams"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Djurgården fish soup with shrimps and aioli croutons"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Classic Sunday roast beef with gravy and roasted root vegetables"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Apple crumble with custard"
+                }
+            ]
+        }
+    },
+    {
+        "id": 14,
+        "name": "Hambergs Fisk",
+        "city": "Uppsala",
+        "address": "Fyristorg 6, 753 10 Uppsala",
+        "cuisine": "Seafood Brasserie",
+        "rating": 4.7,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Tagliatelle with truffle cream and wild mushrooms"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Classic Toast Skagen on butter-fried brioche"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Sautéd chicken breast with tarragon sauce and rice"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Cream of lobster soup"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Baked sweet potato with goat cheese, pecans, and maple syrup"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Pan-fried cod loin with hand-peeled shrimp, horseradish, and browned butter"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Pork tenderloin wrapped in bacon with red wine sauce and mash"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Crème brûlée"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Risotto with asparagus, peas, and mint, topped with parmesan"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Bouillabaisse with cod, salmon, mussels, shrimp, and garlic aioli"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Veal Wallenbergare with green peas, lingonberries, and potato mash"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Lemon sorbet with prosecco splash"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegetarian saffron stew with fennel, potatoes, and garlic bread"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Steamed halibut with egg sauce, chopped dill, and early potatoes"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Duck breast with orange reduction and potato croquettes"
+                },
+                {
+                    "type": "starter",
+                    "dish": "Oysters Fine de Claire"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Porcini mushroom ravioli in brown butter and sage"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Grilled whole lobster with herb butter and french fries"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Ribeye steak with compound garlic butter, asparagus, and fries"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Chocolate fondant with vanilla bean ice cream"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Avocado and burrata salad with basil oil and pine nuts"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Platter of fresh seafood: oysters, shrimp, langoustines, and mussels"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Beef tenderloin tournedos with béarnaise and potato gratin"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Assorted truffles"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Fluffy omelette with chanterelles and Västerbotten cheese"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Smoked salmon Benedict with hollandaise on English muffin"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Croque Monsieur with smoked ham, gruyère, and green salad"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "American pancakes with blueberries and maple syrup"
+                }
+            ]
+        }
+    },
+    {
+        "id": 15,
+        "name": "Nytorget Urban Deli",
+        "city": "Stockholm",
+        "address": "Nytorget 4, 116 40 Stockholm",
+        "cuisine": "Modern Deli Bistro",
+        "rating": 4.5,
+        "weekly_menu": {
+            "Monday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Vegan poke bowl with tofu, avocado, edamame, and mango"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Seared tuna salad with ginger soy dressing and sesame seeds"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Korean BBQ beef tacos with kimchi and spicy mayo"
+                },
+                {
+                    "type": "soup",
+                    "dish": "Miso ramen with soft-boiled egg"
+                }
+            ],
+            "Tuesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Falafel salad with hummus, pickled red onions, and tahini"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Salmon tartare with avocado, lime, and corn tortilla chips"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Crispy pork belly bao buns with hoisin sauce and cucumber"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Chia pudding with mango purée"
+                }
+            ],
+            "Wednesday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Gnocchi with pumpkin sauce, sage, and toasted pumpkin seeds"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Fish and chips with homemade tartar sauce and mushy peas"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Urban Deli classic cheeseburger with chuck roll beef and fries"
+                },
+                {
+                    "type": "salad",
+                    "dish": "Quinoa garden salad"
+                }
+            ],
+            "Thursday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Spiced lentil soup with coconut milk and sourdough flatbread"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Saffron seafood pasta with mussels, squid, and shrimp"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Grilled flank steak with chimichurri and sweet potato fries"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Affogato (espresso over vanilla ice cream)"
+                }
+            ],
+            "Friday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Truffle and mushroom flatbread with arugula and parmesan"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Grilled char fillet with grilled lemon and buttered asparagus"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Steak frites with tarragon butter and hand-cut fries"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Salted caramel chocolate ganache"
+                }
+            ],
+            "Saturday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Burrata bowl with heirloom tomatoes, peaches, and nut pesto"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Ceviche platter with sea bass, prawns, chili, and sweet potato"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Charcuterie and char-grilled ribeye steak platter (shared or individual)"
+                },
+                {
+                    "type": "appetizer",
+                    "dish": "Marinated pimientos de Padrón"
+                }
+            ],
+            "Sunday": [
+                {
+                    "type": "vegetarian",
+                    "dish": "Shakshuka with poached eggs, feta, and sourdough bread"
+                },
+                {
+                    "type": "fish",
+                    "dish": "Smoked salmon and avocado toast with scrambled eggs"
+                },
+                {
+                    "type": "meat",
+                    "dish": "Buttermilk fried chicken waffle with spicy maple syrup"
+                },
+                {
+                    "type": "dessert",
+                    "dish": "Blueberry pancakes with whipped ricotta"
+                }
+            ]
+        }
+    }
+]

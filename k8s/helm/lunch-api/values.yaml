@@ -1,0 +1,79 @@
+# Default values for lunch-api.
+# Override with: helm install lunch-api ./k8s/helm/lunch-api -f my-values.yaml
+
+replicaCount: 2
+
+image:
+  repository: lunch-api
+  pullPolicy: IfNotPresent
+  tag: "latest"   # Override in CI: --set image.tag=$GIT_SHA
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+ingress:
+  enabled: true
+  className: nginx
+  host: lunch-api.local
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, OPTIONS"
+
+config:
+  port: "8000"
+  ginMode: "release"
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "64Mi"
+  limits:
+    cpu: "500m"
+    memory: "128Mi"
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+# Pod security context (applied at the pod level)
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
+  fsGroup: 65532
+  seccompProfile:
+    type: RuntimeDefault
+
+# Container security context
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop: ["ALL"]
+
+# Spread pods across nodes
+topologySpreadConstraints:
+  enabled: true
+
+probes:
+  readiness:
+    path: /api/restaurants
+    initialDelaySeconds: 5
+    periodSeconds: 10
+  liveness:
+    path: /api/restaurants
+    initialDelaySeconds: 15
+    periodSeconds: 20
+  startup:
+    path: /api/restaurants
+    failureThreshold: 10
+    periodSeconds: 3

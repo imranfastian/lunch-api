@@ -1,0 +1,231 @@
+name: CI/CD — Lunch API
+
+# Triggers:
+#   - Every pull request to develop or main  → runs test + build + integration test
+#   - Every push to develop                  → also pushes image to GHCR
+#   - Every push to main                     → also pushes image + deploys to prod
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+    tags: ['v*.*.*']        # v1.0.0, v1.1.0, … trigger a versioned release build
+
+# GITHUB_TOKEN is auto-injected by GitHub — no manual setup needed.
+# write:packages allows pushing images to ghcr.io.
+
+# if Job 2 fails with a 403 error on the GHCR push step, the org has restricted it.
+# env:
+#   IMAGE: ghcr.io/imranfastian/lunch-api
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE: ghcr.io/${{ github.repository_owner }}/lunch-api
+
+# ────────────────────────────────────────────────────────────────────────────
+# JOB 1 — Unit & integration tests (pure Go, no Docker)
+# ────────────────────────────────────────────────────────────────────────────
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'   # reads the version declared in go.mod automatically
+          cache: true
+
+      - name: Download dependencies
+        run: go mod download
+
+      - name: Run tests
+        run: go test -v -race ./...
+
+# ────────────────────────────────────────────────────────────────────────────
+# JOB 2 — Build Docker image and push to GHCR
+#
+# Only runs on push (not PRs) so forks cannot trigger pushes.
+# GITHUB_TOKEN is the password — GitHub generates it per-run automatically.
+# No secrets.GITHUB_TOKEN setup is needed; GitHub injects it for free.
+# ────────────────────────────────────────────────────────────────────────────
+  build:
+    name: Build & Push image
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push'
+    outputs:
+      # Pass the exact image tag to downstream jobs so they all use the same digest
+      tag: ${{ steps.meta.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Log in to GitHub Container Registry (ghcr.io).
+      # github.actor  = your GitHub username — auto-set by GitHub
+      # secrets.GITHUB_TOKEN = short-lived token GitHub creates for this run only
+      #   It expires when the job ends. You never see it, you never rotate it.
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Generate image tags automatically based on what triggered the build:
+      #   push to develop → :develop
+      #   push tag v1.0.0 → :v1.0.0  :v1.0  :latest
+      - name: Generate image tags
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=ref,event=branch
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+
+      # Switch buildx to the docker-container driver — required for GHA layer cache.
+      # The default "docker" driver does not support cache-to type=gha.
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Build the image using our multi-stage Dockerfile and push to ghcr.io.
+      # Layer cache (type=gha) makes subsequent builds fast by reusing unchanged layers.
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+# ────────────────────────────────────────────────────────────────────────────
+# JOB 3 — Deploy to a kind cluster inside the runner and smoke-test
+#
+# This job proves the full deployment works end-to-end:
+#   1. Creates a real Kubernetes cluster inside the Ubuntu runner
+#   2. Loads the image (no registry pull needed — image is already on the VM)
+#   3. Applies the kustomize dev overlay
+#   4. Waits for the pod to be ready
+#   5. Calls the live API and verifies a 200 response
+#
+# This is self-contained — it works without any external cluster or secrets.
+# ────────────────────────────────────────────────────────────────────────────
+  deploy-kind:
+    name: Deploy & smoke test (kind)
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install kind (Kubernetes IN Docker)
+      - name: Install kind
+        run: |
+          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.23.0/kind-linux-amd64
+          chmod +x ./kind && sudo mv ./kind /usr/local/bin/kind
+
+      # Build the image locally on the runner.
+      # We do NOT pull from GHCR here — we build fresh and load directly into kind.
+      # This keeps the job independent of registry permissions.
+      - name: Build image locally
+        run: docker build -t lunch-api:ci .
+
+      # Create a single-node kind cluster (control-plane only is enough for a demo).
+      - name: Create kind cluster
+        run: kind create cluster --name ci --wait 60s
+
+      # Load the locally-built image into kind.
+      # kind nodes are Docker containers; this copies the image into them directly.
+      # No registry credentials needed — the image never leaves the runner VM.
+      - name: Load image into kind
+        run: kind load docker-image lunch-api:ci --name ci
+
+      # Patch the kustomize dev overlay to use the local image tag.
+      # The base deployment.yaml uses lunch-api:latest;
+      # kind load put it in as lunch-api:ci so we override the tag.
+      - name: Apply kustomize dev overlay
+        run: |
+          kubectl apply -k k8s/overlays/dev
+          kubectl set image deployment/lunch-api \
+            lunch-api=lunch-api:ci \
+            -n lunch-api
+
+      # Wait up to 2 minutes for the pod to pass its readiness probe.
+      - name: Wait for rollout
+        run: |
+          kubectl rollout status deployment/lunch-api \
+            -n lunch-api --timeout=120s
+
+      # Forward the service port to localhost and run a live smoke test.
+      - name: Smoke test — GET /api/restaurants
+        run: |
+          kubectl port-forward svc/lunch-api 8000:80 -n lunch-api &
+          sleep 3   # give port-forward time to establish
+
+          echo "=== GET /api/restaurants ==="
+          curl -sf http://localhost:8000/api/restaurants | \
+            python3 -c "import sys,json; d=json.load(sys.stdin); print(f'OK — {len(d)} restaurants')"
+
+          echo "=== GET /api/restaurants/today?city=Uppsala ==="
+          curl -sf "http://localhost:8000/api/restaurants/today?city=Uppsala" | \
+            python3 -c "import sys,json; d=json.load(sys.stdin); print(f'OK — {len(d)} Uppsala restaurants today')"
+
+          echo "=== GET /api/restaurants/nearby?city=stockholm&radius=5 ==="
+          curl -sf "http://localhost:8000/api/restaurants/nearby?city=stockholm&radius=5" | \
+            python3 -c "import sys,json; d=json.load(sys.stdin); print(f'OK — {len(d)} nearby Stockholm restaurants')"
+
+      # Print final pod state for the job summary
+      - name: Show pod status
+        if: always()
+        run: |
+          kubectl get pods -n lunch-api -o wide
+          kubectl describe deployment lunch-api -n lunch-api
+
+# ────────────────────────────────────────────────────────────────────────────
+# JOB 4 — Deploy to a real remote cluster (prod)
+#
+# This job is a TEMPLATE — it requires KUBECONFIG_PROD to be set as a
+# GitHub Actions Secret in your repository settings before it will work.
+#
+# How to add it:
+#   1. GitHub repo → Settings → Secrets and variables → Actions → New secret
+#   2. Name: KUBECONFIG_PROD
+#   3. Value: base64-encoded content of your kubeconfig file
+#              Linux/Mac: base64 -w0 ~/.kube/config
+#              Windows:   [Convert]::ToBase64String([IO.File]::ReadAllBytes("$HOME\.kube\config"))
+#
+# This job is disabled (skipped) until the secret exists.
+# ────────────────────────────────────────────────────────────────────────────
+  deploy-prod:
+    name: Deploy to prod cluster
+    runs-on: ubuntu-latest
+    needs: deploy-kind
+    # Runs only on semver tag pushes (v1.0.0, v1.1.0, …).
+    # secrets.KUBECONFIG_PROD cannot be checked in a job-level if — the job
+    # will be skipped naturally if the secret is absent (Configure kubeconfig
+    # step will fail and the environment gate provides an additional manual brake).
+    if: startsWith(github.ref, 'refs/tags/v')
+    environment: prod    # Requires manual approval in GitHub repo → Environments
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_PROD }}" | base64 -d > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Apply prod overlay
+        run: |
+          kubectl apply -k k8s/overlays/prod
+          kubectl set image deployment/lunch-api \
+            lunch-api=${{ env.IMAGE }}:${{ needs.build.outputs.tag }} \
+            -n lunch-api
+          kubectl rollout status deployment/lunch-api \
+            -n lunch-api --timeout=180s

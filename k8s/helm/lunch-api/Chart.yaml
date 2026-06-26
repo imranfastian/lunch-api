@@ -1,0 +1,12 @@
+apiVersion: v2
+name: lunch-api
+description: Lunch API — serves restaurant menus and helps users find nearby lunch options
+type: application
+version: 0.1.0        # Helm chart version
+appVersion: "0.2.0"   # Application version (matches the API version)
+keywords:
+  - lunch
+  - api
+maintainers:
+  - name: Imran Bashir
+    email: imranfastian@gmail.com

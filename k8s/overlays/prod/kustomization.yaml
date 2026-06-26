@@ -1,0 +1,68 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: lunch-api
+
+resources:
+  - ../../base
+
+# Pin to a specific image digest in production — never use :latest
+images:
+  - name: lunch-api
+    newName: ghcr.io/imranfastian/lunch-api
+    newTag: "v1.0.0"                             # Pin to a specific version
+
+# Patch: 3 replicas in production, spread across all worker nodes
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 3
+    target:
+      kind: Deployment
+      name: lunch-api
+
+  # Always pull the image in prod so the registry digest is verified
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/imagePullPolicy
+        value: Always
+    target:
+      kind: Deployment
+      name: lunch-api
+
+  # Higher resource limits for production load
+  - patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: "200m"
+            memory: "128Mi"
+          limits:
+            cpu: "1000m"
+            memory: "256Mi"
+    target:
+      kind: Deployment
+      name: lunch-api
+
+  # HPA: allow up to 10 replicas under heavy load
+  - patch: |-
+      - op: replace
+        path: /spec/minReplicas
+        value: 3
+      - op: replace
+        path: /spec/maxReplicas
+        value: 10
+    target:
+      kind: HorizontalPodAutoscaler
+      name: lunch-api
+
+  # Point ingress at the production hostname
+  - patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: lunch-api.example.com
+    target:
+      kind: Ingress
+      name: lunch-api

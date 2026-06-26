@@ -1,0 +1,352 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "REST API for SciLifeLab employees to explore lunch options at nearby restaurants.",
+        "title": "SciLifeLab Lunch API",
+        "contact": {},
+        "version": "0.2.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "paths": {
+        "/api/restaurants": {
+            "get": {
+                "description": "Returns all restaurants. Filter by city with ?city=stockholm or ?city=uppsala.",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List restaurants",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filter by city (stockholm or uppsala)",
+                        "name": "city",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/config.Restaurant"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/restaurants/nearby": {
+            "get": {
+                "description": "Returns restaurants within the given radius (km) of the SciLifeLab office in the specified city, sorted by distance. Default radius is 5 km.",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List restaurants near the SciLifeLab office",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "City: stockholm or uppsala",
+                        "name": "city",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "number",
+                        "description": "Search radius in kilometres (default 5)",
+                        "name": "radius",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/handlers.RestaurantNearby"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/restaurants/today": {
+            "get": {
+                "description": "Returns all restaurants showing only the current weekday's menu items. Filter by city with ?city=.",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List restaurants with today's menu",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filter by city (stockholm or uppsala)",
+                        "name": "city",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/handlers.RestaurantToday"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/restaurants/{id}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a restaurant by ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Restaurant ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/config.Restaurant"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/restaurants/{id}/menu": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get full weekly menu for a restaurant",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Restaurant ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/config.WeeklyMenu"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/restaurants/{id}/menu/today": {
+            "get": {
+                "description": "Returns only the current weekday's menu items for the specified restaurant.",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get today's menu for a restaurant",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Restaurant ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.RestaurantToday"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "config.MenuItem": {
+            "type": "object",
+            "properties": {
+                "dish": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "config.Restaurant": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "cuisine": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "number"
+                },
+                "weekly_menu": {
+                    "$ref": "#/definitions/config.WeeklyMenu"
+                }
+            }
+        },
+        "config.WeeklyMenu": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/definitions/config.MenuItem"
+                }
+            }
+        },
+        "handlers.RestaurantNearby": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "cuisine": {
+                    "type": "string"
+                },
+                "distance_km": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "number"
+                },
+                "weekly_menu": {
+                    "$ref": "#/definitions/config.WeeklyMenu"
+                }
+            }
+        },
+        "handlers.RestaurantToday": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "cuisine": {
+                    "type": "string"
+                },
+                "day": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "menu": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/config.MenuItem"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lunch-api
+  namespace: lunch-api
+  labels:
+    app.kubernetes.io/name: lunch-api
+    app.kubernetes.io/part-of: lunch-api
+    app.kubernetes.io/version: "0.2.0"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lunch-api
+  # Rolling update: always keep at least 1 pod available during deploys
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: lunch-api
+        app.kubernetes.io/name: lunch-api
+    spec:
+      # ── Pod-level security ───────────────────────────────────────────────────
+      securityContext:
+        runAsNonRoot: true        # Prevent running as root
+        runAsUser: 65532          # nonroot UID from distroless:nonroot
+        runAsGroup: 65532
+        fsGroup: 65532
+        seccompProfile:
+          type: RuntimeDefault    # Apply the container runtime's default seccomp profile
+
+      # Spread pods evenly across the two worker nodes
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: lunch-api
+
+      containers:
+        - name: lunch-api
+          # Image is overridden per environment via kustomize overlays
+          image: lunch-api:latest
+          imagePullPolicy: IfNotPresent   # Use local image in kind; change to Always in CI
+
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+
+          # ── Environment ───────────────────────────────────────────────────────
+          envFrom:
+            - configMapRef:
+                name: lunch-api-config
+
+          # ── Container-level security ──────────────────────────────────────────
+          securityContext:
+            allowPrivilegeEscalation: false   # Cannot gain more privileges than parent
+            readOnlyRootFilesystem: true       # No writes to the container filesystem
+            capabilities:
+              drop: ["ALL"]                    # Drop all Linux capabilities
+
+          # ── Resource limits ───────────────────────────────────────────────────
+          resources:
+            requests:
+              cpu: "100m"      # 0.1 CPU core guaranteed
+              memory: "64Mi"
+            limits:
+              cpu: "500m"      # Burst up to 0.5 CPU core
+              memory: "128Mi"
+
+          # ── Health probes ─────────────────────────────────────────────────────
+          # Readiness: traffic is only sent once this passes
+          readinessProbe:
+            httpGet:
+              path: /api/restaurants
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+
+          # Liveness: pod is restarted if this fails repeatedly
+          livenessProbe:
+            httpGet:
+              path: /api/restaurants
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            failureThreshold: 3
+
+          # Startup: gives the binary time to load the JSON file before probes begin
+          startupProbe:
+            httpGet:
+              path: /api/restaurants
+              port: http
+            failureThreshold: 10
+            periodSeconds: 3
