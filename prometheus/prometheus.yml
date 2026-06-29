@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Scrapes the lunch-api metrics port via Kubernetes internal DNS.
+  # Pattern: <service>.<namespace>.svc.cluster.local:<port>
+  # Both Prometheus and lunch-api run in the same namespace (lunch-api),
+  # so the short form lunch-api:9091 also works but the full form is explicit.
+  - job_name: lunch-api
+    static_configs:
+      - targets:
+          - lunch-api.lunch-api.svc.cluster.local:9091
+        labels:
+          app: lunch-api
+          namespace: lunch-api

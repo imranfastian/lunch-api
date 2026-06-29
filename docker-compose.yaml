@@ -1,0 +1,38 @@
+# Local observability stack — mirrors what runs in-cluster.
+# Usage:
+#   1. Run the Go app:  go run ./src   (API on :8000, metrics on :9091)
+#   2. Start stack:     docker compose -f docker-compose.observability.yml up -d
+#   3. Open Grafana:    http://localhost:3000  (admin / admin)
+#   4. Open Prometheus: http://localhost:9090
+#
+# Prometheus scrapes the Go app at host.docker.internal:9091/metrics every 15s.
+# Grafana auto-loads the datasource and dashboard from the grafana/ directory.
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.retention.time=24h
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.0.0
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - prometheus
+    restart: unless-stopped

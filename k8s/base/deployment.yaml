@@ -23,6 +23,10 @@ spec:
       labels:
         app: lunch-api
         app.kubernetes.io/name: lunch-api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9091"
+        prometheus.io/path: "/metrics"
     spec:
       # ── Pod-level security ───────────────────────────────────────────────────
       securityContext:
@@ -51,6 +55,9 @@ spec:
           ports:
             - name: http
               containerPort: 8000
+              protocol: TCP
+            - name: metrics
+              containerPort: 9091
               protocol: TCP
 
           # ── Environment ───────────────────────────────────────────────────────

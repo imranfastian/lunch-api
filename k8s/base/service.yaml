@@ -14,9 +14,10 @@ spec:
     app: lunch-api
   ports:
     - name: http
-      port: 80           # Port exposed inside the cluster
-      targetPort: http   # Maps to containerPort named "http" (8000)
+      port: 80
+      targetPort: http
       protocol: TCP
-
-      # always follows wherever the "http" port moves ,change containerPort to 9000 and the service
-      # automatically routes to 9000 — one edit, consistent everywhere
+    - name: metrics
+      port: 9091
+      targetPort: metrics
+      protocol: TCP

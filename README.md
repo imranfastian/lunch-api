@@ -55,7 +55,10 @@ Approximate GPS coordinates for each restaurant are kept in [`src/handlers/geo.g
 ```
 .
 ├── src/
-│   ├── main.go              # Entry point: config load, router setup, server start
+│   ├── main.go              # Entry point: config load, router setup, metrics server on :9091
+│   ├── middleware/
+│   │   ├── metrics.go       # Prometheus middleware — HTTP request counter + latency histogram
+│   │   └── logger.go        # Structured request logger
 │   ├── config/
 │   │   └── config.go        # Data types and in-memory config loader (reads JSON files)
 │   ├── handlers/
@@ -77,7 +80,26 @@ Approximate GPS coordinates for each restaurant are kept in [`src/handlers/geo.g
 │   ├── overlays/
 │   │   ├── dev/             # Kustomize overlay — 1 replica, debug mode
 │   │   └── prod/            # Kustomize overlay — 3 replicas, pinned image tag
-│   └── helm/lunch-api/      # Helm chart (alternative to kustomize)
+│   ├── helm/lunch-api/      # Helm chart (alternative to kustomize)
+│   ├── monitoring/          # Prometheus + Grafana plain Kubernetes manifests
+│   │   ├── prometheus/
+│   │   │   ├── configmap.yaml   # Prometheus scrape config (pod auto-discovery via annotations)
+│   │   │   ├── deployment.yaml  # Prometheus pod with config + persistent data volumes
+│   │   │   ├── service.yaml     # ClusterIP on port 9090
+│   │   │   ├── pvc.yaml         # 1 Gi PersistentVolumeClaim for /prometheus data directory
+│   │   │   └── rbac.yaml        # ServiceAccount + ClusterRole to query the Kubernetes API
+│   │   ├── grafana/
+│   │   │   ├── configmap.yaml   # Datasource (Prometheus URL), dashboard provider, dashboard JSON
+│   │   │   ├── deployment.yaml  # Grafana pod with provisioning volumes mounted
+│   │   │   └── service.yaml     # ClusterIP on port 3000
+│   │   └── kustomization.yaml   # Applies the full monitoring stack in one command
+│   └── kind/cluster.yaml    # kind cluster config (1 control-plane + 2 workers, k8s v1.30.0)
+├── prometheus/
+│   └── prometheus.yml       # Prometheus config for local docker-compose (scrapes host :9091)
+├── grafana/
+│   ├── provisioning/        # Auto-loaded datasource + dashboard provider config
+│   └── dashboards/          # Lunch API dashboard JSON
+├── docker-compose.yml       # Local observability stack: Prometheus :9090 + Grafana :3000
 └── Dockerfile               # Multi-stage build → distroless runtime image
 ```
 
@@ -92,13 +114,14 @@ Approximate GPS coordinates for each restaurant are kept in [`src/handlers/geo.g
 git clone <repo-url>
 cd lunch-api
 
-# Run the server (default port 8000)
+# Run the server (default port 8000, metrics on port 9091)
 # Go downloads all dependencies automatically on first run
 go run ./src/main.go
 ```
 
 The server starts at `http://localhost:8000`.  
-Interactive Swagger UI: `http://localhost:8000/swagger/index.html`
+Interactive Swagger UI: `http://localhost:8000/swagger/index.html`  
+Prometheus metrics: `http://localhost:9091/metrics`
 
 ---
 
@@ -117,6 +140,61 @@ go test -v ./tests/
 
 ---
 
+## Observability
+
+The API exposes Prometheus metrics on a **separate port** (`:9091`) so scrape traffic never inflates the application metrics.
+
+### Metrics exposed
+
+| Metric | Type | Description |
+|--------|------|-------------|
+| `lunch_api_http_requests_total` | Counter | Total requests, labelled by `path`, `method`, `status` |
+| `lunch_api_http_duration_seconds` | Histogram | Request latency with `path` and `method` labels |
+
+### Local observability stack (docker-compose)
+
+Runs Prometheus + Grafana as Docker containers against the locally running Go app.
+
+```bash
+# 1. Start the Go app (metrics server on :9091)
+go run ./src/main.go
+
+# 2. Start Prometheus + Grafana
+docker compose -f docker-compose.yml up -d
+
+# 3. Open Prometheus:  http://localhost:9090
+#    Open Grafana:     http://localhost:3000  (admin / admin)
+```
+
+Prometheus scrapes `host.docker.internal:9091/metrics` every 15 s. Grafana auto-loads the Prometheus datasource and the Lunch API dashboard from the `grafana/` directory — no manual setup needed.
+
+### In-cluster observability (kind)
+
+Prometheus and Grafana run as pods inside the `lunch-api` namespace alongside the application. Prometheus discovers pods automatically via annotations — any pod annotated with `prometheus.io/scrape: "true"` and `prometheus.io/port` is scraped without changing the Prometheus config.
+
+```bash
+# Deploy the monitoring stack
+kubectl apply -k k8s/monitoring/
+
+# Access Grafana (keep this terminal open)
+kubectl port-forward -n lunch-api svc/grafana 3000:3000
+
+# Access Prometheus UI (optional, separate terminal)
+kubectl port-forward -n lunch-api svc/prometheus 9090:9090
+```
+
+Open `http://localhost:3000` → login `admin / admin` → the **Lunch API** dashboard is pre-loaded.
+
+#### Why RBAC is needed for in-cluster Prometheus
+
+Prometheus uses the Kubernetes API to discover pods (`kubernetes_sd_configs`). The `rbac.yaml` manifest grants it a ServiceAccount with `get/list/watch` on pods, services, and endpoints cluster-wide. Without it, Prometheus cannot query the API and finds no targets.
+
+#### Namespace
+
+Everything — the application and the monitoring stack — lives in the single `lunch-api` namespace. Grafana reaches Prometheus via the short service DNS name `http://prometheus:9090` (no cross-namespace DNS needed).
+
+---
+
 ## Kubernetes deployment
 
 The application is packaged as a Docker image and deployed to Kubernetes via Kustomize overlays. A Helm chart is provided as an alternative install path. The GitHub Actions pipeline automates testing, building, and deployment on every push.
@@ -128,14 +206,18 @@ k8s/
 ├── base/                     # Shared manifests applied to every environment
 │   ├── namespace.yaml        #   Namespace: lunch-api
 │   ├── configmap.yaml        #   GIN_MODE, PORT
-│   ├── deployment.yaml       #   Security-hardened pods with probes and resource limits
-│   ├── service.yaml          #   ClusterIP — port 80 → 8000
+│   ├── deployment.yaml       #   Security-hardened pods, probes, resource limits, metrics port 9091
+│   ├── service.yaml          #   ClusterIP — port 80 (HTTP) + 9091 (metrics)
 │   ├── ingress.yaml          #   nginx Ingress for lunch-api.local
 │   └── hpa.yaml              #   Autoscaling: CPU + memory
 ├── overlays/
 │   ├── dev/                  # 1 replica, GIN_MODE=debug, local image tag
 │   └── prod/                 # 3 replicas, GIN_MODE=release, pinned to v1.0.0
 ├── helm/lunch-api/           # Helm chart — alternative to kustomize
+├── monitoring/               # Prometheus + Grafana — same lunch-api namespace
+│   ├── prometheus/           #   ConfigMap, Deployment, Service, PVC (1 Gi), RBAC
+│   ├── grafana/              #   ConfigMap (datasource + dashboard), Deployment, Service
+│   └── kustomization.yaml    #   kubectl apply -k k8s/monitoring/ deploys the full stack
 └── kind/cluster.yaml         # kind cluster config (1 control-plane + 2 workers, k8s v1.30.0)
 ```
 
